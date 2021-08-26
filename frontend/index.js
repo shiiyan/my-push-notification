@@ -22,16 +22,8 @@ const requestNotificationPermission = async () => {
   return permission;
 };
 
-const showLocalNotification = (title, body, swRegistration) => {
-  const options = {
-    body,
-  };
-  swRegistration.showNotification(title, options);
-};
-
 const main = async () => {
   check();
   const swRegistration = await registerServiceWorker();
   const permission = await requestNotificationPermission();
-  showLocalNotification("This is title", "This is message", swRegistration);
 };

@@ -1,9 +1,9 @@
 const urlB64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
-  const base64 = (base64String + padding)
+  const base64Data = (base64String + padding)
     .replace(/\-/g, "+")
     .replace(/_/g, "/");
-  const rawData = atob(base64);
+  const rawData = Buffer.from(base64Data, "base64");
   const outputArray = new Uint8Array(rawData.length);
   for (let i = 0; i < rawData.length; ++i) {
     outputArray[i] = rawData.charCodeAt(i);
@@ -37,9 +37,17 @@ self.addEventListener("activate", async () => {
   }
 });
 
+const showLocalNotification = (title, body, swRegistration) => {
+  const options = {
+    body,
+  };
+  swRegistration.showNotification(title, options);
+};
+
 self.addEventListener("push", (event) => {
   if (event.data) {
     console.log("Push event!! ", event.data.text());
+    showLocalNotification("Yolo", event.data.text(), self.registration);
   } else {
     console.log("Push event but no data");
   }
