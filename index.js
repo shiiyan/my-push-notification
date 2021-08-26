@@ -35,5 +35,3 @@ const main = async () => {
   const permission = await requestNotificationPermission();
   showLocalNotification("This is title", "This is message", swRegistration);
 };
-
-main();
