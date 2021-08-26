@@ -1,3 +1,3 @@
 # my-push-notification
 
-Sample App to test push notifcation from web app using Service Worker and Push API.
+Sample App to test push notifcation for web app using Service Worker and Push API.
